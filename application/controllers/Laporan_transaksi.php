@@ -6,6 +6,9 @@
  
      public function index()
      {
+        if ($this->session->userdata('login') != 1) {
+            redirect('Auth','refresh');
+         }
          $data['tipe_pembayaran'] = $this->db->query("select jenis_transaksi from transaksi group by jenis_transaksi")->result();
          if (isset($_POST['jenis_pembayaran']) && isset($_POST['tanggal'])) {
              $tanggal= $this->input->post('tanggal');
