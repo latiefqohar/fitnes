@@ -32,6 +32,12 @@
 <script src="<?= base_url(); ?>assets/template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url(); ?>assets/template/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?= base_url(); ?>assets/template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src=""></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
 	<!-- sweet alert -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- Bootstrap 4 -->
@@ -75,10 +81,60 @@ function cek_paket() {
         success: function (result) { 
             console.log(result);
            $('#tgl_exp').val(result.hasil);
+           $('#harga').val(result.harga);
         }
     })
 }
 
+function cek_harga() {
+  $.ajax({
+        url: '<?= base_url('Kasir/cek_harga'); ?>', 
+        type: 'post',
+        dataType: 'json', 
+        data: {
+            'id': $('#paket').val(),
+           
+        },
+        success: function (result) { 
+            console.log(result);
+           $('#total').val(result.harga);
+           $('#harga').val(result.harga);
+           $('#totalf').html(result.harga);
+        }
+    })
+}
+
+function runScript(e) {
+    //See notes about 'which' and 'key'
+    var harga = $('#harga').val()
+    if (e.keyCode == 13) {
+      $.ajax({
+        url: '<?= base_url('Kasir/cek_member'); ?>', 
+        type: 'post',
+        dataType: 'json', 
+        data: {
+            'id': $('#id_member').val(),
+           
+        },
+        success: function (result) { 
+            console.log(result);
+            if (result == null) {
+              notifikasi("Gagal!","Member Tidak Memiliki Paket","error")
+            }else{
+              notifikasi("SUKSES!","Member menggunakan paket","success")
+              $('#nama_member').val(result.nama);
+              $('#diskon').val(harga);
+              $('#total').val("0");
+              $('#totalf').html("0");
+            }
+          
+        }
+    })
+    }
+}
+$(function () {
+$('#reservation').daterangepicker()
+})
 </script>
 
 </body>

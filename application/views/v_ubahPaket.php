@@ -52,6 +52,11 @@
 								<input type="date" class="form-control" name="tgl_exp" id="tgl_exp"
 									readonly required>
 							</div>
+							<div class="form-group">
+								<label for="harga">HARGA</label>
+								<input type="text" class="form-control" name="harga" id="harga"
+									readonly required>
+							</div>
 						</div>
 					</div>
 				</div>

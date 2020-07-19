@@ -3,8 +3,16 @@ var base_url = window.location.protocol + window.location.pathname;
 
 $(function () {
 	$("#example1").DataTable({
+
 		"responsive": true,
 		"autoWidth": false,
+		'dom': 'Bfrtip',
+		'buttons': [
+			'copyHtml5',
+			'excelHtml5',
+			'csvHtml5',
+			'pdfHtml5'
+		],
 	});
 });
 

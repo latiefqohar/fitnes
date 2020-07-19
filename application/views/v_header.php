@@ -31,6 +31,9 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="<?= base_url(); ?>assets/template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" href="<?= base_url(); ?>assets/template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+	<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css
+"> -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
 
 
 </head>
@@ -220,6 +223,22 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item">
+                <a href="<?= base_url("Master_User"); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item">
+                <a href="<?= base_url("Master_harga"); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Harga</p>
+                </a>
+              </li>
+            </ul>
           </li>
 					<li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
@@ -231,17 +250,34 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="<?= base_url("Kasir"); ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>KASIR</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="<?= base_url("Paket_aktif"); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Paket Aktif</p>
                 </a>
               </li>
 						</ul>
-						<ul class="nav nav-treeview">
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Laporan
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url("Analisa"); ?>" class="nav-link">
+                <a href="<?= base_url("Laporan_transaksi"); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Analisa Kredit</p>
+                  <p>Laporan Transaksi</p>
                 </a>
               </li>
             </ul>

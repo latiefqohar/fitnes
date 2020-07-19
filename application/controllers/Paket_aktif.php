@@ -38,7 +38,7 @@
         $data = $this->M_crud->find(['id'=>$id],'kategori')->row_array();
         $tgl1 = date('Y-m-d');
         $tgl2 = date('Y-m-d', strtotime('+'.$data["bulan_aktif"].' month', strtotime($tgl1))); //operasi 
-       echo json_encode(["hasil"=>$tgl2]);
+       echo json_encode(["hasil"=>$tgl2,"harga"=>$data['harga']]);
     }
 
     public function aksiTambah(){
@@ -46,6 +46,7 @@
         $id_kategori = $this->input->post('id_kategori');
         $tgl_beli = $this->input->post('tgl_beli');
         $tgl_exp = $this->input->post('tgl_exp');
+        $harga = $this->input->post('harga');
         
         $datainput = array(
             "id_member" => $id_member,
@@ -60,6 +61,15 @@
 			redirect('Paket_aktif','refresh');
         }else{
             if ($this->M_crud->insert_data($datainput,"paket")) {
+                $datatransaksi = array(
+                    'jenis_transaksi'=> "PEMBELIAN MEMBER BARU",
+                    'tanggal_transaksi'=> date('Y-m-d H:i:s'),
+                    'nama_member'=> $id_member,
+                    'harga'=> $harga,
+                    'total'=> $harga,
+                    'kasir'=> $this->session->userdata('nama'),
+                );
+                $this->M_crud->insert_data($datatransaksi,"transaksi");
                 $this->session->set_flashdata('msg', 'notifikasi("Sukses!","Data Berhasil Disimpan","success")');
                 redirect('Paket_aktif','refresh');
             }else {
@@ -85,6 +95,7 @@
         $id_kategori = $this->input->post('id_kategori');
         $tgl_beli = $this->input->post('tgl_beli');
         $tgl_exp = $this->input->post('tgl_exp');
+        $harga = $this->input->post('harga');
 		
 		$dataupdate = array(
             "id_member" => $id_member,
@@ -94,6 +105,15 @@
 		);
 
 		if ($this->M_crud->update_data(['id'=>$id],$dataupdate,"paket")) {
+            $datatransaksi = array(
+                'jenis_transaksi'=> "PAKET MEMBER LAMA",
+                'tanggal_transaksi'=> date('Y-m-d H:i:s'),
+                'nama_member'=> $id_member,
+                'harga'=> $harga,
+                'total'=> $harga,
+                'kasir'=> $this->session->userdata('nama'),
+            );
+            $this->M_crud->insert_data($datatransaksi,"transaksi");
 			$this->session->set_flashdata('msg', 'notifikasi("Sukses!","Data Berhasil Diubah","success")');
 			redirect('Paket_aktif','refresh');
 		}else {
