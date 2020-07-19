@@ -14,6 +14,9 @@ class Master_kategori extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('login') != 1) {
+            redirect('Auth','refresh');
+         }
 		$data['kategori'] = $this->M_crud->get_data("kategori")->result();
 		$this->load->view('v_header');
 		$this->load->view('v_master_kategori', $data);

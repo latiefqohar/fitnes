@@ -16,6 +16,9 @@
  
      public function index()
      {
+        if ($this->session->userdata('login') != 1) {
+            redirect('Auth','refresh');
+         }
          $data['paket'] = $this->db->query("select a.*,b.nama,c.nama from paket a join member b on a.id_member=b.id join kategori c on a.id_kategori=c.id")->result();
          $this->load->view('v_header');
         $this->load->view('v_paket',$data);

@@ -15,6 +15,9 @@ class Master_member extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('login') != 1) {
+            redirect('Auth','refresh');
+         }
 		$data['member'] = $this->M_crud->get_data("member")->result();
 		$this->load->view('v_header');
 		$this->load->view('v_master_member', $data);

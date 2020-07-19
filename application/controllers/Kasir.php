@@ -6,7 +6,11 @@
  class Kasir extends CI_Controller {
  
      public function index()
+
      {
+        if ($this->session->userdata('login') != 1) {
+            redirect('Auth','refresh');
+         }
          $data['harga'] = $this->M_crud->get_data("harga")->result();
           $this->load->view('v_header');
           $this->load->view('v_kasir', $data);

@@ -14,6 +14,9 @@ class Master_user extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('login') != 1) {
+            redirect('Auth','refresh');
+         }
 		$data['user'] = $this->M_crud->get_data("user")->result();
 		$this->load->view('v_header');
 		$this->load->view('v_user', $data);
