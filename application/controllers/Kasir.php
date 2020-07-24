@@ -35,7 +35,8 @@
         $harga = $this->input->post('harga');
         $diskon = $this->input->post('diskon');
         $total = $this->input->post('total');
-        $kasir = $this->input->post('kasir');
+        $kasir = $this->session->userdata('nama');
+        ;
         $datainput = array(
             'jenis_transaksi' => $jenis_transaksi,
             'tanggal_transaksi' => $tanggal_transaksi,

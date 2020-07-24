@@ -18,7 +18,7 @@
 									<?php
 									 foreach($member as $mem){ 
 									?>
-										<option value="<?= $mem->id; ?>"><?= $mem->id; ?></option>
+										<option value="<?= $mem->id; ?>"><?= $mem->nama; ?>||<?= $mem->id; ?></option>
 									<?php
 									 } 
 									?>

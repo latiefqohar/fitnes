@@ -11,6 +11,7 @@
 					<thead>
 						<tr>
 							<th>ID Member</th>
+							<th>Nama Member</th>
 							<th>Nama Paket</th>
 							<th>Tanggal Beli</th>
 							<th>Tanggal Expired</th>
@@ -22,6 +23,7 @@
 						<?php foreach($paket as $row){ ?>
 						<tr>
 							<td><?= $row->id_member; ?></td>
+							<td><?= $row->nama_member; ?></td>
 							<td><?= $row->nama; ?></td>
 							<td><?= $row->tgl_beli; ?></td>
 							<td><?= $row->tgl_exp; ?></td>

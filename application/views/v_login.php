@@ -27,6 +27,10 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
+    <center>
+        <img src="<?= base_url('assets/logo.png'); ?>" alt="" width="250px">
+    </center>
+    <br>
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="<?= base_url('Auth/login'); ?>" method="post">
